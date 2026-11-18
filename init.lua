@@ -23,5 +23,11 @@ if not pcall(require, "lazy") then
   vim.cmd.quit()
 end
 
+vim.api.nvim_create_autocmd('InsertLeave', {
+  callback = function()
+    if vim.snippet.active() then vim.snippet.stop() end
+  end,
+})
+
 require "lazy_setup"
 require "polish"
